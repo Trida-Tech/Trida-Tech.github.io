@@ -1,166 +1,69 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trida</title>
-  <style>
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #f5f0ff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-
-    .card {
-      background: white;
-      border-radius: 24px;
-      padding: 48px 40px 40px;
-      box-shadow: 0 8px 40px rgba(120, 80, 200, 0.12);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      max-width: 320px;
-      width: 90%;
-    }
-
-    .bubble {
-      background: white;
-      border: 2px solid #e8e0f5;
-      border-radius: 20px;
-      padding: 10px 18px;
-      font-size: 15px;
-      color: #5a4a6a;
-      font-weight: 500;
-      box-shadow: 0 2px 8px rgba(120, 80, 200, 0.08);
-    }
-
-    .cat-wrapper {
-      width: 180px;
-    }
-
-    .cat-wrapper svg {
-      width: 100%;
-      height: auto;
-      filter: drop-shadow(0 12px 32px rgba(176, 96, 48, 0.2));
-      animation: cat-bob 2.8s ease-in-out infinite;
-    }
-
-    @keyframes cat-bob {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(-8px); }
-    }
-
-    .tail {
-      transform-box: view-box;
-      transform-origin: 145px 218px;
-      animation: tail-sway 3s ease-in-out infinite;
-      animation-delay: -1s;
-    }
-
-    @keyframes tail-sway {
-      0%, 100% { transform: rotate(0deg); }
-      50%       { transform: rotate(18deg); }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gadse</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #fef5f7 0%, #f0f4ff 50%, #f5f0ff 100%); }
+  .cat-wrap { display: flex; flex-direction: column; align-items: center; }
+  .cat { width: 140px; height: auto; filter: drop-shadow(0 4px 12px rgba(155, 126, 212, 0.2)); animation: bob 3s ease-in-out infinite; cursor: pointer; }
+  @keyframes bob { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-6px) rotate(2deg); } }
+  .cat-speech { display: inline-block; background: white; padding: 8px 14px; border-radius: 16px; font-size: 12px; color: #7a6890; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; box-shadow: 0 2px 8px rgba(155, 126, 212, 0.15); margin-bottom: 8px; position: relative; cursor: pointer; }
+  .cat-speech::after { content: ""; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 6px solid white; }
+</style>
 </head>
 <body>
-  <div class="card">
-    <div class="bubble">Schnurr... weiter so! 🐾</div>
-
-    <div class="cat-wrapper">
-      <svg viewBox="0 0 200 278" xmlns="http://www.w3.org/2000/svg"
-           role="img" aria-label="Kawaii cat sitting and reading a book">
-
-        <g class="tail">
-          <path d="M 145 218 Q 188 242 180 190 Q 170 152 148 172"
-                stroke="#b07848" stroke-width="17" fill="none" stroke-linecap="round"/>
-          <path d="M 145 218 Q 188 242 180 190 Q 170 152 148 172"
-                stroke="#e8a87c" stroke-width="10" fill="none" stroke-linecap="round"/>
-        </g>
-
-        <ellipse cx="100" cy="183" rx="53" ry="49" fill="#e8a87c" stroke="#b07848" stroke-width="3"/>
-        <ellipse cx="100" cy="199" rx="29" ry="35" fill="#fce8d8" stroke="#d4a88a" stroke-width="1.5"/>
-
-        <path d="M 60 202 C 48 220 50 238 63 244"
-              stroke="#b07848" stroke-width="19" fill="none" stroke-linecap="round"/>
-        <path d="M 60 202 C 48 220 50 238 63 244"
-              stroke="#e8a87c" stroke-width="12" fill="none" stroke-linecap="round"/>
-
-        <path d="M 140 202 C 152 220 150 238 137 244"
-              stroke="#b07848" stroke-width="19" fill="none" stroke-linecap="round"/>
-        <path d="M 140 202 C 152 220 150 238 137 244"
-              stroke="#e8a87c" stroke-width="12" fill="none" stroke-linecap="round"/>
-
-        <rect x="60" y="230" width="80" height="48" rx="5" ry="5"
-              fill="#7c5cbf" stroke="#5c3fa0" stroke-width="2.5"/>
-        <line x1="75" y1="230" x2="75" y2="278" stroke="#5c3fa0" stroke-width="2"/>
-        <rect x="77" y="233" width="59" height="41" rx="2" ry="2" fill="#9d80d8" stroke="none"/>
-        <line x1="83" y1="243" x2="131" y2="243" stroke="#5c3fa0" stroke-width="1.5" opacity="0.5"/>
-        <line x1="83" y1="251" x2="131" y2="251" stroke="#5c3fa0" stroke-width="1.5" opacity="0.5"/>
-        <line x1="83" y1="259" x2="131" y2="259" stroke="#5c3fa0" stroke-width="1.5" opacity="0.5"/>
-        <line x1="83" y1="267" x2="118" y2="267" stroke="#5c3fa0" stroke-width="1.5" opacity="0.5"/>
-
-        <ellipse cx="62" cy="242" rx="16" ry="10"
-                 fill="#e8a87c" stroke="#b07848" stroke-width="2.2"/>
-        <line x1="55" y1="241" x2="54" y2="247" stroke="#b07848" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="62" y1="243" x2="62" y2="249" stroke="#b07848" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="69" y1="241" x2="70" y2="247" stroke="#b07848" stroke-width="1.5" stroke-linecap="round"/>
-
-        <ellipse cx="138" cy="242" rx="16" ry="10"
-                 fill="#e8a87c" stroke="#b07848" stroke-width="2.2"/>
-        <line x1="131" y1="241" x2="130" y2="247" stroke="#b07848" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="138" y1="243" x2="138" y2="249" stroke="#b07848" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="145" y1="241" x2="146" y2="247" stroke="#b07848" stroke-width="1.5" stroke-linecap="round"/>
-
-        <circle cx="100" cy="88" r="47" fill="#e8a87c" stroke="#b07848" stroke-width="3"/>
-
-        <path d="M 88,53 Q 100,51 112,53" stroke="#c87a50" stroke-width="3"
-              fill="none" stroke-linecap="round" opacity="0.7"/>
-        <path d="M 85,62 Q 100,59 115,62" stroke="#c87a50" stroke-width="2.5"
-              fill="none" stroke-linecap="round" opacity="0.5"/>
-
-        <polygon points="62,55 48,17 80,35" fill="#e8a87c" stroke="#b07848" stroke-width="2.5" stroke-linejoin="round"/>
-        <polygon points="65,50 56,25 78,37" fill="#ffb3c6"/>
-        <polygon points="138,55 152,17 120,35" fill="#e8a87c" stroke="#b07848" stroke-width="2.5" stroke-linejoin="round"/>
-        <polygon points="135,50 144,25 122,37" fill="#ffb3c6"/>
-
-        <ellipse cx="69" cy="101" rx="16" ry="10" fill="#ffb3c6" opacity="0.55"/>
-        <ellipse cx="131" cy="101" rx="16" ry="10" fill="#ffb3c6" opacity="0.55"/>
-
-        <path d="M 75,84 Q 82,94 90,84" stroke="#7a4a35" stroke-width="3.5"
-              fill="none" stroke-linecap="round"/>
-        <path d="M 110,84 Q 118,94 126,84" stroke="#7a4a35" stroke-width="3.5"
-              fill="none" stroke-linecap="round"/>
-
-        <g transform="translate(100, 106)">
-          <circle cx="-2.5" cy="-2" r="2.5" fill="#ff9eb5"/>
-          <circle cx="2.5"  cy="-2" r="2.5" fill="#ff9eb5"/>
-          <polygon points="-4.5,0 4.5,0 0,4.5" fill="#ff9eb5"/>
-        </g>
-
-        <path d="M 95,116 Q 100,121 105,116" fill="none"
-              stroke="#c06080" stroke-width="2" stroke-linecap="round"/>
-
-        <line x1="46" y1="100" x2="86" y2="104" stroke="#c8a080" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="44" y1="107" x2="86" y2="107" stroke="#c8a080" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="46" y1="114" x2="86" y2="110" stroke="#c8a080" stroke-width="1.5" stroke-linecap="round"/>
-
-        <line x1="154" y1="100" x2="114" y2="104" stroke="#c8a080" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="156" y1="107" x2="114" y2="107" stroke="#c8a080" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="154" y1="114" x2="114" y2="110" stroke="#c8a080" stroke-width="1.5" stroke-linecap="round"/>
-
-      </svg>
-    </div>
-  </div>
+<div class="cat-wrap">
+  <div class="cat-speech" id="cat-speech">Schnurr… 🐾</div>
+  <svg class="cat" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+    <path d="M 155 130 Q 185 110 180 75 Q 178 60 168 62 Q 162 64 164 75 Q 168 95 150 115" fill="#f4b8a8" stroke="#3a2c4a" stroke-width="2.5" stroke-linejoin="round"/>
+    <ellipse cx="100" cy="135" rx="50" ry="35" fill="#ffd4c4" stroke="#3a2c4a" stroke-width="2.5"/>
+    <ellipse cx="100" cy="145" rx="28" ry="18" fill="#fff0e8"/>
+    <circle cx="100" cy="85" r="42" fill="#ffd4c4" stroke="#3a2c4a" stroke-width="2.5"/>
+    <path d="M 68 60 L 62 30 L 88 52 Z" fill="#ffd4c4" stroke="#3a2c4a" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M 70 52 L 68 38 L 82 50 Z" fill="#ffb8c8"/>
+    <path d="M 132 60 L 138 30 L 112 52 Z" fill="#ffd4c4" stroke="#3a2c4a" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M 130 52 L 132 38 L 118 50 Z" fill="#ffb8c8"/>
+    <circle cx="72" cy="95" r="7" fill="#ffb8c8" opacity="0.6"/>
+    <circle cx="128" cy="95" r="7" fill="#ffb8c8" opacity="0.6"/>
+    <path d="M 80 82 Q 86 76 92 82" fill="none" stroke="#3a2c4a" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 108 82 Q 114 76 120 82" fill="none" stroke="#3a2c4a" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 96 92 L 104 92 L 100 97 Z" fill="#d4729a" stroke="#3a2c4a" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M 100 97 Q 100 102 95 103" fill="none" stroke="#3a2c4a" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 100 97 Q 100 102 105 103" fill="none" stroke="#3a2c4a" stroke-width="2" stroke-linecap="round"/>
+    <line x1="60" y1="92" x2="75" y2="95" stroke="#3a2c4a" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="60" y1="100" x2="75" y2="100" stroke="#3a2c4a" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="140" y1="92" x2="125" y2="95" stroke="#3a2c4a" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="140" y1="100" x2="125" y2="100" stroke="#3a2c4a" stroke-width="1.5" stroke-linecap="round"/>
+    <rect x="78" y="138" width="44" height="28" fill="#c4a9e8" stroke="#3a2c4a" stroke-width="2" rx="2"/>
+    <line x1="100" y1="138" x2="100" y2="166" stroke="#3a2c4a" stroke-width="2"/>
+    <line x1="84" y1="146" x2="96" y2="146" stroke="#fff" stroke-width="1.2"/>
+    <line x1="84" y1="152" x2="96" y2="152" stroke="#fff" stroke-width="1.2"/>
+    <line x1="84" y1="158" x2="94" y2="158" stroke="#fff" stroke-width="1.2"/>
+    <line x1="104" y1="146" x2="116" y2="146" stroke="#fff" stroke-width="1.2"/>
+    <line x1="104" y1="152" x2="116" y2="152" stroke="#fff" stroke-width="1.2"/>
+    <line x1="104" y1="158" x2="114" y2="158" stroke="#fff" stroke-width="1.2"/>
+    <ellipse cx="78" cy="165" rx="9" ry="6" fill="#ffd4c4" stroke="#3a2c4a" stroke-width="2"/>
+    <ellipse cx="122" cy="165" rx="9" ry="6" fill="#ffd4c4" stroke="#3a2c4a" stroke-width="2"/>
+  </svg>
+</div>
+<script>
+  const messages = [
+    "Schnurr… 🐾",
+    "Du schaffst das! 📖",
+    "Lebe mit Herz! 💜",
+    "Ein Schritt nach dem anderen ✨",
+    "Stolz auf dich! 🌸",
+    "Kaffee oder Tee? ☕",
+    "Pause ist auch produktiv 🍵",
+    "Trau dich! 🌟"
+  ];
+  const speech = document.getElementById("cat-speech");
+  document.querySelector(".cat-wrap").addEventListener("click", () => {
+    speech.textContent = messages[Math.floor(Math.random() * messages.length)];
+  });
+</script>
 </body>
 </html>
